@@ -109,37 +109,37 @@ class Pigrow:
             self.loc_settings    = self.loc_dic['loc_settings']
             #print loc_settings
         except:
-            print("IMPORTANT - Location of Settings File not included in file, adding default - " + loc_settings)
+            print("IMPORTANT - Location of Settings File not included in file, adding default - " + self.loc_settings)
             self.loc_dic['loc_settings']=self.loc_settings
         try:
             self.loc_switchlog    = self.loc_dic['loc_switchlog']
         except:
-            print("IMPORTANT - Location of switch log not included in file, adding default - " + loc_switchlog)
+            print("IMPORTANT - Location of switch log not included in file, adding default - " + self.loc_switchlog)
             self.loc_dic['loc_switchlog']=self.loc_switchlog
         try:
             self.loc_dht_log    = self.loc_dic['loc_dht_log']
         except:
-            print("IMPORTANT - Location of DHT log not included in file, adding default - " + loc_dht_log)
+            print("IMPORTANT - Location of DHT log not included in file, adding default - " + self.loc_dht_log)
             self.loc_dic['loc_dht_log']=self.loc_dht_log
         try:
             self.err_log    = self.loc_dic['err_log']
         except:
-            print("IMPORTANT - Location of Error log not included in file, adding default - " + err_log)
+            print("IMPORTANT - Location of Error log not included in file, adding default - " + self.err_log)
             self.loc_dic['err_log']=self.err_log
         try:
             self.caps_path    = self.loc_dic['caps_path']
         except:
-            print("IMPORTANT - Location of caps path not included in file, adding default - " + caps_path)
+            print("IMPORTANT - Location of caps path not included in file, adding default - " + self.caps_path)
             self.loc_dic['caps_path']=self.caps_path
         try:
             self.graph_path    = self.loc_dic['graph_path']
         except:
-            print("IMPORTANT - Location of Graph path not included in file, adding default - " + graph_path)
+            print("IMPORTANT - Location of Graph path not included in file, adding default - " + self.graph_path)
             self.loc_dic['graph_path']=self.graph_path
         try:
             self.log_path    = self.loc_dic['log_path']
         except:
-            print("IMPORTANT - Location of log path not included in file, adding default - " + log_path)
+            print("IMPORTANT - Location of log path not included in file, adding default - " + self.log_path)
             self.loc_dic['log_path']=self.log_path
 
         try:
