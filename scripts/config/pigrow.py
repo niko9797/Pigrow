@@ -237,16 +237,14 @@ class Pigrow:
                 print("   ####     " +str(self.used_gpio[x][1])+"        " + str(self.used_gpio[x][0].split("_")[1] + "  "))
 
     def add_new_device(self, device_type, pin_num):
-        deviceType = ""
-        pinNum=13
         try:
-            check_gpio_valid_add(pinNum)
+            check_gpio_valid_add(pin_num)
         except:
             pass
-        self.pi_set['gpio_dht22sensor'] = gpiopin
+        self.pi_set['gpio_dht22sensor'] = pin_num
         save_settings()
 
-    def print_used_GPIO(self, pin_num):
+    def print_used_GPIO_all(self):
         for x in range(0,len(self.used_gpio)):
             if not str(self.used_gpio[x][1]) == "":
                 print("   ####     " + str(x) + "        " + str(self.used_gpio[x][0].split("_")[1] + "  "))
