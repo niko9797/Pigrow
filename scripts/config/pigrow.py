@@ -110,37 +110,37 @@ class Pigrow:
             #print loc_settings
         except:
             print("IMPORTANT - Location of Settings File not included in file, adding default - " + loc_settings)
-            self.loc_dic['loc_settings']=loc_settings
+            self.loc_dic['loc_settings']=self.loc_settings
         try:
             self.loc_switchlog    = self.loc_dic['loc_switchlog']
         except:
             print("IMPORTANT - Location of switch log not included in file, adding default - " + loc_switchlog)
-            self.loc_dic['loc_switchlog']=loc_switchlog
+            self.loc_dic['loc_switchlog']=self.loc_switchlog
         try:
             self.loc_dht_log    = self.loc_dic['loc_dht_log']
         except:
             print("IMPORTANT - Location of DHT log not included in file, adding default - " + loc_dht_log)
-            self.loc_dic['loc_dht_log']=loc_dht_log
+            self.loc_dic['loc_dht_log']=self.loc_dht_log
         try:
             self.err_log    = self.loc_dic['err_log']
         except:
             print("IMPORTANT - Location of Error log not included in file, adding default - " + err_log)
-            self.loc_dic['err_log']=err_log
+            self.loc_dic['err_log']=self.err_log
         try:
             self.caps_path    = self.loc_dic['caps_path']
         except:
             print("IMPORTANT - Location of caps path not included in file, adding default - " + caps_path)
-            self.loc_dic['caps_path']=caps_path
+            self.loc_dic['caps_path']=self.caps_path
         try:
             self.graph_path    = self.loc_dic['graph_path']
         except:
             print("IMPORTANT - Location of Graph path not included in file, adding default - " + graph_path)
-            self.loc_dic['graph_path']=graph_path
+            self.loc_dic['graph_path']=self.graph_path
         try:
             self.log_path    = self.loc_dic['log_path']
         except:
             print("IMPORTANT - Location of log path not included in file, adding default - " + log_path)
-            self.loc_dic['log_path']=log_path
+            self.loc_dic['log_path']=self.log_path
 
         try:
             self.my_client_id     = self.loc_dic['my_client_id']
@@ -171,7 +171,7 @@ class Pigrow:
         if not os.path.exists(loc_locs):
             print("Locations and passes file not found, creating default one...")
             self.write_loclocs()
-            print(" - Settings saved to file - " + str(loc_locs))
+            print(" - Settings saved to file - " + str(self.loc_locs))
 
 
     def save_settings(self):
