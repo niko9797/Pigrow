@@ -5,7 +5,7 @@ import pigrow
 if __name__ == '__main__':
   piGrow = pigrow.Pigrow()
   #piGrow.set_loc_defaults()
-  piGrow.load_locs()
+  #piGrow.load_locs()
   #piGrow.write_loclocs()
   #piGrow.set_locs_and_passes()
   #piGrow.save_settings()

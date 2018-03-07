@@ -24,6 +24,7 @@ class Pigrow:
     global homedir
     valid_gpio=[]
     used_gpio_num=[]
+    used_gpio=[]
 
     # Locations
     global config_path, loc_locs, autorun_path, cron_path, switch_path, loc_settings, loc_switchlog, loc_dht_log
@@ -51,7 +52,7 @@ class Pigrow:
 
         self.homedir = os.getenv("HOME")
         self.valid_gpio = [2,3,4,17,27,22,10,9,11,0,5,6,13,19,26,14,15,18,23,24,25,8,7,1,12,16,20,21]
-        self.self.used_gpio_num = []
+        self.used_gpio_num = []
 
         self.config_path = self.homedir + "/Pigrow/config/"
         self.loc_locs    = self.homedir + "/Pigrow/config/dirlocs.txt"
@@ -226,7 +227,7 @@ class Pigrow:
             asplit = str(a).split("_")
             if asplit[0] == 'gpio':
                 if len(asplit) == 2:
-                    #print("   ####   " + asplit[1])
+                    print("   ####   " + asplit[1])
                     self.used_gpio.append([a,b])
                     self.used_gpio_num.append(b)
 
