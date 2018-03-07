@@ -168,7 +168,7 @@ class Pigrow:
             print("No Reddit user set to recieve mail and issue commands")
             self.watcher_name     = ' '
 
-        if not os.path.exists(loc_locs):
+        if not os.path.exists(self.loc_locs):
             print("Locations and passes file not found, creating default one...")
             self.write_loclocs()
             print(" - Settings saved to file - " + str(self.loc_locs))
@@ -237,10 +237,10 @@ class Pigrow:
                 print("   ####     " +str(self.used_gpio[x][1])+"        " + str(self.used_gpio[x][0].split("_")[1] + "  "))
 
     def add_new_device(self, device_type, pin_num):
-        try:
-            check_gpio_valid_add(pin_num)
-        except:
-            pass
+        #try:
+            #check_gpio_valid_add(pin_num)
+        #except:
+            #pass
         self.pi_set['gpio_dht22sensor'] = pin_num
         save_settings()
 
