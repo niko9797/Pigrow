@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os, sys
+import os, sys, device
 from subprocess import check_output
 try:
     from crontab import CronTab   #  pip install python-crontab
@@ -17,23 +17,21 @@ if __name__ == '__main__':
             loc_locs = "/home/pragmo/pigitgrow/Pigrow/config/dirlocs.txt"
 
 
-
-
 class Pigrow:
 
-    global homedir
+    homedir
     valid_gpio=[]
     used_gpio_num=[]
     used_gpio=[]
 
     # Locations
-    global config_path, loc_locs, autorun_path, cron_path, switch_path, loc_settings, loc_switchlog, loc_dht_log
-    global err_log, caps_path, graph_path, log_path
-    global my_client_id, my_client_secret, my_username, my_password, subreddit, wiki_title, live_wiki_title, watcher_name
+    config_path, loc_locs, autorun_path, cron_path, switch_path, loc_settings, loc_switchlog, loc_dht_log
+    err_log, caps_path, graph_path, log_path
+    my_client_id, my_client_secret, my_username, my_password, subreddit, wiki_title, live_wiki_title, watcher_name
 
     #used in set_locs_and_passes():
-    global watcher_name, loc_settings, loc_switchlog, loc_dht_log, loc_dht_log, err_log, caps_path, graph_path
-    global log_path, my_client_id, my_client_secret, my_username, my_password, subreddit, wiki_title, live_wiki_title
+    watcher_name, loc_settings, loc_switchlog, loc_dht_log, loc_dht_log, err_log, caps_path, graph_path
+    log_path, my_client_id, my_client_secret, my_username, my_password, subreddit, wiki_title, live_wiki_title
 
     # used in write_loclocs
     loc_dic = {}
@@ -190,15 +188,15 @@ class Pigrow:
             print str(a) +"  = "+ str(b)
 
     def make_dirs():
-        if not os.path.exists(caps_path):
-            os.makedirs(caps_path)
-            print("Created; " + caps_path)
-        if not os.path.exists(graph_path):
-            os.makedirs(graph_path)
-            print("Created; " + graph_path)
-        if not os.path.exists(log_path):
-            os.makedirs(log_path)
-            print("Created; " + log_path)
+        if not os.path.exists(self.caps_path):
+            os.makedirs(self.caps_path)
+            print("Created; " + self.caps_path)
+        if not os.path.exists(self.graph_path):
+            os.makedirs(self.graph_path)
+            print("Created; " + self.graph_path)
+        if not os.path.exists(self.log_path):
+            os.makedirs(self.log_path)
+            print("Created; " + self.log_path)
 
     def guided_setup(self):
         print("\n\n Pigrow dependencies Install ")
@@ -242,7 +240,7 @@ class Pigrow:
         #except:
             #pass
         self.pi_set['gpio_dht22sensor'] = pin_num
-        save_settings()
+        self.save_settings()
 
     def print_used_GPIO_all(self):
         for x in range(0,len(self.used_gpio)):
