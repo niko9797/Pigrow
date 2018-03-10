@@ -1,0 +1,17 @@
+camera_settings=/home/pi/Pigrow/config/camera_settings.txt
+live_wiki_title=
+my_client_id=
+loc_switchlog=/home/pi/Pigrow/logs/switch_log.txt
+my_username=Pigrow_salad
+log_path=/home/pi/Pigrow/logs/
+wiki_title=
+subreddit=
+err_log=/home/pi/Pigrow/logs/err_log.txt
+my_client_secret=
+graph_path=/home/pi/Pigrow/graphs/
+watcher_name=
+my_password=
+path=/home/pi/Pigrow/
+caps_path=/home/pi/Pigrow/caps/
+loc_dht_log=/home/pi/Pigrow/logs/dht22_log.txt
+loc_settings=/home/pi/Pigrow/config/pigrow_config.txt
