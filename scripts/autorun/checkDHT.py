@@ -27,7 +27,6 @@ homedir = os.getenv("HOME")
 sys.path.append(homedir + '/Pigrow/scripts/')
 import pigrow_defs
 sys.path.append(homedir + '/Pigrow/scripts/switches/')
-import heater_on, heater_off, humid_on, humid_off, dehumid_on, dehumid_off, fans_on, fans_off, lamp_on, lamp_off
 loc_dic = pigrow_defs.load_locs(homedir + "/Pigrow/config/dirlocs.txt")
 set_dic = pigrow_defs.load_settings(loc_dic['loc_settings'], err_log=loc_dic['err_log'])
 #print set_dic
@@ -151,7 +150,7 @@ def heater_control(temp, use_fans=True):
         message = "doing nothing, it's " + str(temp) + " degrees and the heater is " + heater_state
         #print(" --not worth logging but, " + message)
 
-def humid_contol(humid,use_fans=False):
+def humid_control(humid,use_fans=False):
     global humid_state
     humid_low  = float(set_dic['humid_low'])
     if humid < humid_low and humid_state != 'up_on':
@@ -210,18 +209,18 @@ def check_lamp(on_time, off_time):
     if True:
         if on_time > off_time:
             if current_time > on_time or current_time < off_time:
-                lamp_on.lamp_on(set_dic, loc_dic['loc_switchlog'])
+                lamp.lamp_on(set_dic, loc_dic['loc_switchlog'])
                 return 'a lamp on', True
             else:
-                lamp_off.lamp_off(set_dic, loc_dic['loc_switchlog'])
+                lamp.lamp_off(set_dic, loc_dic['loc_switchlog'])
                 return 'a lamp off', True
 
         elif on_time < off_time:
             if current_time > on_time and current_time < off_time:
-                lamp_on.lamp_on(set_dic, loc_dic['loc_switchlog'])
+                lamp.lamp_on(set_dic, loc_dic['loc_switchlog'])
                 return 'the lamp on', True
             else:
-                lamp_off.lamp_off(set_dic, loc_dic['loc_switchlog'])
+                lamp.lamp_off(set_dic, loc_dic['loc_switchlog'])
                 return 'the lamp off', True
 
         elif current_time == on_time:
@@ -258,7 +257,7 @@ while True:
             if 'gpio_humid' in set_dic:
                 if not str(set_dic['gpio_humid']).strip() == '' or log_non == True or hum_use_fan == True:
                     if use_humid == True:
-                        humid_contol(humid,hum_use_fan)
+                        humid_control(humid,hum_use_fan)
             if 'gpio_dehumid' in set_dic:
                 if not str(set_dic['gpio_dehumid']).strip() == '' or log_non == True or dehum_use_fan == True:
                     if use_dehumid == True:

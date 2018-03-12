@@ -25,11 +25,6 @@ used_gpio=[]
 # Defaults
 
 
-
-
-
-
-
 def set_loc_defaults():
     global watcher_name, loc_settings, loc_switchlog, loc_dht_log, loc_dht_log, err_log, caps_path, graph_path, log_path, my_client_id, my_client_secret, my_username, my_password, subreddit, wiki_title, live_wiki_title
     loc_settings    = homedir + "/Pigrow/config/pigrow_config.txt"
@@ -49,12 +44,18 @@ def set_loc_defaults():
     watcher_name    = ' '
 
 
-def load_locs():
+def load_loclocs():
     print("Loading location details")
     with open(loc_locs, "r") as f:
         for line in f:
             s_item = line.split("=")
             loc_dic[s_item[0]]=s_item[1].rstrip('\n') #adds each setting to dictionary
+
+def load_locs():
+    with open(loc_settings, "r") as f:
+        for line in f:
+            s_item = line.split("=")
+            pi_set[s_item[0]]=s_item[1].rstrip('\n')
 
 
 def write_loclocs():
@@ -70,7 +71,7 @@ def write_loclocs():
 def set_locs_and_passes():
     global watcher_name, loc_settings, loc_switchlog, loc_dht_log, loc_dht_log, err_log, caps_path, graph_path, log_path, my_client_id, my_client_secret, my_username, my_password, subreddit, wiki_title, live_wiki_title
     try:
-        load_locs()
+        load_loclocs()
     except:
         print(" Couldn't Load the logs")
     try:
@@ -258,14 +259,7 @@ def show_gpio_menu():
         print("  1   - DHT22 Temp and Humidity")
         print("")
         print("   Relay Bindings;")
-        print(" 2 - Lamp")
-        print(" 3 - Heater")
-        print(" 4 - Fans")
-        print(" 5 - Humid")
-        print(" 6 - Dehumid")
-        print(" 7 - Co2")
-        print(" 8 - Fan out")
-        print(" 9 - Fan in")
+        print(" 2 - Custom")
         print("")
         option = raw_input("Type the number and press return; ")
         if option == "1":
@@ -288,21 +282,20 @@ def show_gpio_menu():
                 else:
                     print("Sorry that doesn't seem to be a valid pin... ")
         elif option == "2":
-            bind_realy('gpio_lamp')
-        elif option == "3":
-            bind_realy('gpio_heater')
-        elif option == "4":
-            bind_realy('gpio_fans')
-        elif option == "5":
-            bind_realy('gpio_humid')
-        elif option == "6":
-            bind_realy('gpio_dehumid')
-        elif option == "7":
-            bind_realy('gpio_CO2')
-        elif option == "8":
-            bind_realy('gpio_fanout')
-        elif option == "9":
-            bind_realy('gpio_fanin')
+            print("select script to add")
+            count = 0
+            for x in os.listdir(path):
+                count += 1
+                if x.endswith(".py"):
+                    print("   #### " + str(count) + " - " + x)
+
+            option = raw_input("Select script to add")
+            try:
+                bind_realy("gpio_"os.listdir(path)[int(option)])
+            except:
+                print("Should use numbers for this,,,")
+                show_gpio_menu()
+                exit()
         show_gpio_menu()
 
     elif option == "2":
@@ -721,11 +714,8 @@ if __name__ == '__main__':
             loc_locs = "/home/pragmo/pigitgrow/Pigrow/config/dirlocs.txt"
     set_loc_defaults()
     set_locs_and_passes()
+    load_locs()
 
-    with open(loc_settings, "r") as f:
-        for line in f:
-            s_item = line.split("=")
-            pi_set[s_item[0]]=s_item[1].rstrip('\n')
 
     print("##################################")
     print("##   Pigrow Setup Utility       ##")
