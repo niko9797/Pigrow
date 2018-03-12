@@ -711,7 +711,7 @@ if __name__ == '__main__':
         if  thearg == 'locs':
             loc_locs = str(argu).split('=')[1]
         elif  thearg == '-pragmo':
-            loc_locs = "/home/pragmo/pigitgrow/Pigrow/config/dirlocs.txt"
+    loc_locs = "/home/pragmo/pigitgrow/Pigrow/config/dirlocs.txt"
     set_loc_defaults()
     set_locs_and_passes()
     load_locs()
